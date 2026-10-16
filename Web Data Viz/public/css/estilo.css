@@ -365,3 +365,58 @@ input {
   75%  {transform: rotate(-25deg)}
   100% {transform: rotate(25deg)}
 }
+
+.paizao {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.paizao img {
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.paizao p {
+    flex: 1;
+    color: black;
+    font-size: 28px;
+    line-height: 1.6;
+
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 0;
+}
+
+.time {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 40px;
+    color: white;
+}
+
+.time img {
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.time p {
+    flex: 1;
+    color: black;
+    font-size: 28px;
+    line-height: 1.6;
+
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 0;
+}
