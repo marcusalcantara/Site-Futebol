@@ -125,7 +125,7 @@ body {
 /* FOOTER */
 
 .footer {
-  background-color: #03da59d2;
+  background-color: bla;
   height: 150px;
   color: #fff;
   display: flex;
@@ -163,7 +163,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color: palevioletred;
+  color: #03da59d2;
   flex-direction: column;
   height: fit-content;
   padding: 20px 0;
@@ -188,14 +188,14 @@ body {
 }
 
 .formulario input {
-  border: 2px solid #248a4d;
+  border: 2px solid #000000d2;
   text-align: center;
   border-radius: 10px;
   margin: 0;
 }
 
 .formulario select {
-  border: 2px solid #248a4d;
+  border: 2px solid #000000d2;
   background-color: white;
   color: gray;
   height: 36px;
@@ -311,11 +311,13 @@ input {
 
 .simulador {
   color: white;
+  background-image: url("../assets/imgs/campo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .simulador .container {
   flex-direction: column;
-  overflow: scroll; 
   height: var(--tamanho-simulador);
 }
 
@@ -377,7 +379,9 @@ input {
     width: 400px;
     height: 300px;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 22px;
+    border: 6px solid #000000d2;
+    box-sizing: border-box;
 }
 
 .paizao p {
@@ -391,6 +395,8 @@ input {
     border-radius: 12px;
     padding: 20px;
     margin: 0;
+    border: 6px solid #000000d2;
+    box-sizing: border-box;
 }
 
 .time {
@@ -406,6 +412,8 @@ input {
     height: 300px;
     object-fit: cover;
     border-radius: 12px;
+    border: 6px solid #000000d2;
+    box-sizing: border-box;
 }
 
 .time p {
@@ -419,4 +427,6 @@ input {
     border-radius: 12px;
     padding: 20px;
     margin: 0;
+    border: 6px solid #000000d2;
+    box-sizing: border-box;
 }
