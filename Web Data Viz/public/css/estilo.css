@@ -411,7 +411,7 @@ input {
     width: 400px;
     height: 300px;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 22px;
     border: 6px solid #000000d2;
     box-sizing: border-box;
 }

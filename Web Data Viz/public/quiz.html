@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exemplo - Quiz</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/quiz.css">
 </head>
 
 
@@ -76,32 +76,94 @@
     const listaDeQuestoes = [
 
         {
-            pergunta: "Qual mês tem 30 dias?",
-            alternativaA: "Janeiro",
-            alternativaB: "Dezembro",
-            alternativaC: "Junho",
-            alternativaD: "Agosto",
+            pergunta: "Em que ano o Clube de Regatas do Flamengo foi fundado?",
+            alternativaA: "1895",
+            alternativaB: "1902",
+            alternativaC: "1910",
+            alternativaD: "1920",
+            alternativaCorreta: "alternativaA"
+        },
+
+        {
+            pergunta: "Qual foi o primeiro mascote do Flamengo ?",
+            alternativaA: "Leão",
+            alternativaB: "Urubu",
+            alternativaC: "Águia",
+            alternativaD: "Popeye",
+            alternativaCorreta: "alternativaD"
+        },
+
+        {
+            pergunta: "Qual desses jogadores foi revelado pelo flamengo ?",
+            alternativaA: "Garrincha",
+            alternativaB: "Adriano",
+            alternativaC: "Romário",
+            alternativaD: "Bebeto",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "Qual jogador é conhecido como 'Galinho de Quintino'?",
+            alternativaA: "Romário",
+            alternativaB: "Zico",
+            alternativaC: "Júnior",
+            alternativaD: "Adílio",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "Contra qual equipe o Flamengo conquistou sua primeira Libertadores, em 1981?",
+            alternativaA: "Boca Juniors",
+            alternativaB: "River Plate",
+            alternativaC: "Peñarol",
+            alternativaD: "Cobreloa",
+            alternativaCorreta: "alternativaD"
+        },
+
+        {
+            pergunta: "Quem deu a assitência para o gol do Flamengo na final da Libertadores de 2022?",
+            alternativaA: "Bruno Henrique",
+            alternativaB: "Gabigol",
+            alternativaC: "Arrascaeta",
+            alternativaD: "Everton Ribeiro",
+            alternativaCorreta: "alternativaD"
+        },
+
+        {
+            pergunta: "Qual treinador comandou o Flamengo na conquista da Libertadores de 2019?",
+            alternativaA: "Jorge Jesus",
+            alternativaB: "Dorival Júnior",
+            alternativaC: "Renato Gaúcho",
+            alternativaD: "Paulo Sousa",
+            alternativaCorreta: "alternativaA"
+        },
+
+        {
+            pergunta: "Qual foi o adversário do Flamengo na final do Mundial Interclubes de 1981?",
+            alternativaA: "Liverpool",
+            alternativaB: "Real Madrid",
+            alternativaC: "Barcelona",
+            alternativaD: "Bayern de Munique",
+            alternativaCorreta: "alternativaA"
+        },
+
+        {
+            pergunta: "Quem era o capitão do Flamengo na conquista da Libertadores de 1981?",
+            alternativaA: "Zico",
+            alternativaB: "Nunes",
+            alternativaC: "Júnior",
+            alternativaD: "Leandro",
             alternativaCorreta: "alternativaC"
         },
 
         {
-            pergunta: "Quantas horas tem em um dia?",
-            alternativaA: "30 horas",
-            alternativaB: "38 horas",
-            alternativaC: "48 horas",
-            alternativaD: "24 horas",
-            alternativaCorreta: "alternativaD"
-        },
-
-        {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
+            pergunta: "Qual jogador marcou o gol do título do Flamengo na final do Mundial de 1981?",
+            alternativaA: "Zico",
+            alternativaB: "Nunes",
+            alternativaC: "Andrade",
+            alternativaD: "Junior",
+            alternativaCorreta: "alternativaB"
         }
-
     ]
 
     // variáveis globais    
@@ -256,29 +318,29 @@
     function finalizarJogo() {
         let textoParaMensagemFinal = null
         let classComCoresParaMensagemFinal = null
-        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+        const media = (pontuacaoFinal / quantidadeDeQuestoes) * 10
 
-        if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Parece que você não estudou..."
+        if (media < 6) {
+            textoParaMensagemFinal = "Mal"
             classComCoresParaMensagemFinal = "text-danger-with-bg"
         }
-        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
+        else if (media >= 6 && media < 8) {
+            textoParaMensagemFinal = "Na média"
             classComCoresParaMensagemFinal = "text-warning-with-bg"
         }
-        else if (porcentagemFinalDeAcertos >= 0.9) {
-            textoParaMensagemFinal = "Uau, parabéns!"
+        else if (media >= 8) {
+            textoParaMensagemFinal = "Muito bom"
             classComCoresParaMensagemFinal = "text-success-with-bg"
         }
 
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
+        textoParaMensagemFinal += "<br> Sua média foi: " + media.toFixed(1) + " de 10."
 
 
         document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
         document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
 
-        document.getElementById('jogo').classList.add("text-new-gray") 
+        document.getElementById('jogo').classList.add("text-new-gray")
 
         btnProx.disabled = true
         btnSubmeter.disabled = true
