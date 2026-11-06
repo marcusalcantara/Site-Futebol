@@ -1,179 +1,228 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplo - Quiz</title>
-    <link rel="stylesheet" href="css/quiz.css">
+    <title>Quiz - História do Futebol | Além das Quatro Linhas</title>
+
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="stylesheet" href="./css/quiz.css">
+    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
+<body onload="verificarSessoe(); onloadEsconder();">
 
-<body onload="onloadEsconder()">
-    <div id="pontuacaoEJogo">
-        <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
-
-        <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
-            <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-                <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
-                <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
-            </div>
-            <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
-                <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                    <span id="spanPontuacaoFinal">***</span>
-                </span>
-                <span id="msgFinal" class="width-fit-content">***</span>
-            </div>
-        </div>
-
-        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
-
-            <div id="infoQuestao" class="padding-8">
-                <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
-                    questões.</span>
-            </div>
-
-            <div id="perguntaDaQuestaoAtual" class="padding-8">
-                <span id="spanQuestaoExibida" class="text-bold"></span>
-            </div>
-
-            <div id="infoAlternativas" class="padding-8">
-                <span><em>Escolha uma opção dentre as abaixo:</em></span>
-            </div>
-
-            <div id="opcoes" class="flex-colunar padding-8">
-                <span>
-                    <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
-                    <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
-                </span>
-                <span>
-                    <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
-                    <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
-                </span>
-                <span>
-                    <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
-                    <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
-                </span>
-                <span>
-                    <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
-                    <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
-                </span>
-            </div>
-
-            <div id="botoes" class="flex-colunar padding-8">
-                <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
-                <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
-                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
-                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
-            </div>
-
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo">Além das Quatro Linhas</h1>
+            <ul class="navbar">
+                <li>
+                    <a href="./index.html">Inicio</a>
+                </li>
+                <li>
+                    <a href="./historia.html">Historia</a>
+                </li>
+                <li>|</li>
+                <li>
+                    <a href="./login.html">Login</a>
+                </li>
+                <li>
+                    <a href="./cadastro.html">Cadastro</a>
+                </li>
+            </ul>
         </div>
     </div>
+
+    <!-- Quiz -->
+    <div class="quiz-wrapper">
+        <div class="container quiz-container">
+            <div id="pontuacaoEJogo">
+                <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+
+                <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
+                    <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
+                        <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas">0</span></span>
+                        <span class="width-fit-content">Quantidade de erros: <span id="spanErradas">0</span></span>
+                    </div>
+                    <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
+                        <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
+                            <span id="spanPontuacaoFinal">***</span>
+                        </span>
+                        <span id="msgFinal" class="width-fit-content">***</span>
+                    </div>
+                </div>
+
+                <div id="jogo" class="width-fit-content flex-colunar border-secondary">
+
+                    <div id="infoQuestao" class="padding-8">
+                        <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
+                            questões.</span>
+                    </div>
+
+                    <div id="perguntaDaQuestaoAtual" class="padding-8">
+                        <span id="spanQuestaoExibida" class="text-bold"></span>
+                    </div>
+
+                    <div id="infoAlternativas" class="padding-8">
+                        <span><em>Escolha uma opção dentre as abaixo:</em></span>
+                    </div>
+
+                    <div id="opcoes" class="flex-colunar padding-8">
+                        <span>
+                            <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                            <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                        </span>
+                        <span>
+                            <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                            <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                        </span>
+                        <span>
+                            <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                            <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                        </span>
+                        <span>
+                            <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                            <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
+                        </span>
+                    </div>
+
+                    <div id="botoes" class="flex-colunar padding-8">
+                        <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
+                        <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
+                        <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <h4>Feito por Marcus Vinicius Silva Alcantara - 2026</h4>
+        </div>
+    </div>
+
 </body>
 
 </html>
 <script>
+    function verificarSessoe() {
+        var email = sessionStorage.EMAIL_USUARIO;
+        var nome = sessionStorage.NOME_USUARIO;
+
+        if (!email || !nome) {
+            window.location = "./login.html";
+        }
+    }
+
     const listaDeQuestoes = [
 
         {
-            pergunta: "Em que ano o Clube de Regatas do Flamengo foi fundado?",
-            alternativaA: "1895",
-            alternativaB: "1902",
-            alternativaC: "1910",
-            alternativaD: "1920",
+            pergunta: "Em que ano foi realizada a primeira Copa do Mundo da FIFA?",
+            alternativaA: "1930",
+            alternativaB: "1934",
+            alternativaC: "1938",
+            alternativaD: "1950",
             alternativaCorreta: "alternativaA"
         },
 
         {
-            pergunta: "Qual foi o primeiro mascote do Flamengo ?",
-            alternativaA: "Leão",
-            alternativaB: "Urubu",
-            alternativaC: "Águia",
-            alternativaD: "Popeye",
-            alternativaCorreta: "alternativaD"
-        },
-
-        {
-            pergunta: "Qual desses jogadores foi revelado pelo flamengo ?",
-            alternativaA: "Garrincha",
-            alternativaB: "Adriano",
-            alternativaC: "Romário",
-            alternativaD: "Bebeto",
+            pergunta: "Qual país sediou a Copa do Mundo de 1950, conhecida pelo Maracanazo?",
+            alternativaA: "Uruguai",
+            alternativaB: "Brasil",
+            alternativaC: "Suíça",
+            alternativaD: "Suécia",
             alternativaCorreta: "alternativaB"
         },
 
         {
-            pergunta: "Qual jogador é conhecido como 'Galinho de Quintino'?",
-            alternativaA: "Romário",
-            alternativaB: "Zico",
-            alternativaC: "Júnior",
-            alternativaD: "Adílio",
-            alternativaCorreta: "alternativaB"
-        },
-
-        {
-            pergunta: "Contra qual equipe o Flamengo conquistou sua primeira Libertadores, em 1981?",
-            alternativaA: "Boca Juniors",
-            alternativaB: "River Plate",
-            alternativaC: "Peñarol",
-            alternativaD: "Cobreloa",
-            alternativaCorreta: "alternativaD"
-        },
-
-        {
-            pergunta: "Quem deu a assitência para o gol do Flamengo na final da Libertadores de 2022?",
-            alternativaA: "Bruno Henrique",
-            alternativaB: "Gabigol",
-            alternativaC: "Arrascaeta",
-            alternativaD: "Everton Ribeiro",
-            alternativaCorreta: "alternativaD"
-        },
-
-        {
-            pergunta: "Qual treinador comandou o Flamengo na conquista da Libertadores de 2019?",
-            alternativaA: "Jorge Jesus",
-            alternativaB: "Dorival Júnior",
-            alternativaC: "Renato Gaúcho",
-            alternativaD: "Paulo Sousa",
-            alternativaCorreta: "alternativaA"
-        },
-
-        {
-            pergunta: "Qual foi o adversário do Flamengo na final do Mundial Interclubes de 1981?",
-            alternativaA: "Liverpool",
-            alternativaB: "Real Madrid",
-            alternativaC: "Barcelona",
-            alternativaD: "Bayern de Munique",
-            alternativaCorreta: "alternativaA"
-        },
-
-        {
-            pergunta: "Quem era o capitão do Flamengo na conquista da Libertadores de 1981?",
-            alternativaA: "Zico",
-            alternativaB: "Nunes",
-            alternativaC: "Júnior",
-            alternativaD: "Leandro",
+            pergunta: "Qual seleção venceu a primeira Copa do Mundo, em 1930?",
+            alternativaA: "Argentina",
+            alternativaB: "Brasil",
+            alternativaC: "Uruguai",
+            alternativaD: "Estados Unidos",
             alternativaCorreta: "alternativaC"
         },
 
         {
-            pergunta: "Qual jogador marcou o gol do título do Flamengo na final do Mundial de 1981?",
-            alternativaA: "Zico",
-            alternativaB: "Nunes",
-            alternativaC: "Andrade",
-            alternativaD: "Junior",
+            pergunta: "Em que ano a FIFA foi fundada?",
+            alternativaA: "1900",
+            alternativaB: "1904",
+            alternativaC: "1912",
+            alternativaD: "1920",
             alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "Quantas seleções participaram da primeira Copa do Mundo, em 1930?",
+            alternativaA: "8",
+            alternativaB: "10",
+            alternativaC: "13",
+            alternativaD: "16",
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            pergunta: "Qual foi o primeiro país a vencer uma Copa do Mundo fora de seu continente?",
+            alternativaA: "Brasil",
+            alternativaB: "Alemanha",
+            alternativaC: "Itália",
+            alternativaD: "Argentina",
+            alternativaCorreta: "alternativaA"
+        },
+
+        {
+            pergunta: "Qual é o único jogador a ter vencido três Copas do Mundo como jogador?",
+            alternativaA: "Diego Maradona",
+            alternativaB: "Pelé",
+            alternativaC: "Johan Cruyff",
+            alternativaD: "Zinédine Zidane",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "Quem marcou o gol da vitória da Inglaterra sobre a Alemanha Ocidental na prorrogação da final de 1966?",
+            alternativaA: "Bobby Charlton",
+            alternativaB: "Geoff Hurst",
+            alternativaC: "Martin Peters",
+            alternativaD: "Jimmy Greaves",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "Em que ano foi criada a Copa Libertadores da América?",
+            alternativaA: "1955",
+            alternativaB: "1960",
+            alternativaC: "1965",
+            alternativaD: "1970",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "Qual país sediou a Copa do Mundo de 1966, vencida pela Inglaterra?",
+            alternativaA: "Alemanha Ocidental",
+            alternativaB: "Brasil",
+            alternativaC: "Inglaterra",
+            alternativaD: "México",
+            alternativaCorreta: "alternativaC"
         }
     ]
 
-    // variáveis globais    
+    // variáveis globais
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
     let tentativaIncorreta = 0
     let certas = 0
     let erradas = 0
     let quantidadeDeQuestoes = listaDeQuestoes.length
-    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     function onloadEsconder() {
         document.getElementById('pontuacao').style.display = "none"
@@ -191,7 +240,6 @@
 
         btnSubmeter.disabled = false
         btnProx.disabled = true
-        // btnConcluir.disabled = true
         btnTentarNovamente.disabled = true
     }
 
@@ -199,9 +247,7 @@
         habilitarAlternativas(true)
         const questaoAtual = listaDeQuestoes[index]
         numeroDaQuestaoAtual = index
-        console.log("questaoAtual")
-        console.log(questaoAtual)
-        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
+        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1
         document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
         document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
         document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
@@ -210,7 +256,7 @@
     }
 
     function submeter() {
-        const options = document.getElementsByName("option"); // recupera alternativas no html
+        const options = document.getElementsByName("option");
 
         let hasChecked = false
         for (let i = 0; i < options.length; i++) {
@@ -260,26 +306,23 @@
     }
 
     function tentarNovamente() {
-        // atualiza a página
         window.location.reload()
     }
 
     function checarResposta() {
-        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
-        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]
+        const respostaQuestaoAtual = questaoAtual.alternativaCorreta
 
-        const options = document.getElementsByName("option"); // recupera alternativas no html
+        const options = document.getElementsByName("option");
 
-        let alternativaCorreta = null // variável para armazenar a alternativa correta
+        let alternativaCorreta = null
 
         options.forEach((option) => {
             if (option.value === respostaQuestaoAtual) {
-                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
                 alternativaCorreta = option.labels[0].id
             }
         })
 
-        // verifica se resposta assinalada é correta
         options.forEach((option) => {
             if (option.checked === true && option.value === respostaQuestaoAtual) {
                 document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
@@ -318,23 +361,17 @@
     function finalizarJogo() {
         let textoParaMensagemFinal = null
         let classComCoresParaMensagemFinal = null
-        const media = (pontuacaoFinal / quantidadeDeQuestoes) * 10
 
-        if (media < 6) {
-            textoParaMensagemFinal = "Mal"
+        if (pontuacaoFinal <= 4) {
+            textoParaMensagemFinal = `${pontuacaoFinal}/10 Precisa estudar mais sobre futebol`
             classComCoresParaMensagemFinal = "text-danger-with-bg"
-        }
-        else if (media >= 6 && media < 8) {
-            textoParaMensagemFinal = "Na média"
+        } else if (pontuacaoFinal >= 5 && pontuacaoFinal <= 7) {
+            textoParaMensagemFinal = `${pontuacaoFinal}/10 Bom desempenho`
             classComCoresParaMensagemFinal = "text-warning-with-bg"
-        }
-        else if (media >= 8) {
-            textoParaMensagemFinal = "Muito bom"
+        } else if (pontuacaoFinal >= 8) {
+            textoParaMensagemFinal = `${pontuacaoFinal}/10 Ótimo desempenho`
             classComCoresParaMensagemFinal = "text-success-with-bg"
         }
-
-        textoParaMensagemFinal += "<br> Sua média foi: " + media.toFixed(1) + " de 10."
-
 
         document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
         document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
@@ -344,8 +381,6 @@
 
         btnProx.disabled = true
         btnSubmeter.disabled = true
-        // btnConcluir.disabled = true
         btnTentarNovamente.disabled = false
-
     }
 </script>
