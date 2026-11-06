@@ -5,6 +5,7 @@ body {
   padding: 0;
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: black;
+  overflow-x: hidden;
 }
 
 :root {
@@ -429,4 +430,226 @@ input {
     margin: 0;
     border: 6px solid #000000d2;
     box-sizing: border-box;
+}
+
+/* HISTÓRIA - HERO */
+.historia-hero {
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("../assets/imgs/campo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.historia-hero .container {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.hero-titulo {
+  font-size: 48px;
+  font-weight: 800;
+  color: #03da59d2;
+  margin: 0 0 15px 0;
+  line-height: 1.2;
+}
+
+.hero-subtitulo {
+  font-size: 20px;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* HISTÓRIA - MEMÓRIAS (cards empilhados) */
+.historia-memorias {
+  background-color: #000000;
+  padding: 80px 20px;
+}
+
+.secao-titulo {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 800;
+  color: #03da59d2;
+  margin-bottom: 50px;
+}
+
+.memoria-card {
+  background: #111111;
+  border: 2px solid #03da59d2;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
+}
+
+.memoria-card:hover {
+  transform: translateY(-5px);
+}
+
+.memoria-conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 30px 20px;
+  gap: 20px;
+}
+
+.memoria-imagem {
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 4px solid #03da59d2;
+}
+
+.memoria-imagem img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.memoria-titulo {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background: rgba(0,0,0,0.75);
+  color: #03da59d2;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  border: 2px solid #03da59d2;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.memoria-texto {
+  width: 100%;
+  max-width: 600px;
+  color: white;
+  text-align: left;
+}
+
+.memoria-texto h4 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #03da59d2;
+  margin: 0 0 12px 0;
+  border-left: 4px solid #03da59d2;
+  padding-left: 12px;
+}
+
+.memoria-texto p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #dddddd;
+  margin: 0;
+}
+
+/* Responsividade história cards */
+@media (max-width: 768px) {
+  .memoria-conteudo {
+    padding: 20px 15px;
+  }
+
+  .memoria-imagem img {
+    height: 250px;
+  }
+
+  .memoria-titulo {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+
+  .memoria-texto h4 {
+    font-size: 22px;
+    text-align: center;
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .memoria-texto {
+    text-align: center;
+  }
+}
+
+/* HISTÓRIA - CTA */
+.historia-cta {
+  background-color: #03da59d2;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.historia-cta .container {
+  flex-direction: column;
+  align-items: center;
+}
+
+.cta-titulo {
+  font-size: 32px;
+  font-weight: 800;
+  color: #000000;
+  margin: 0 0 15px 0;
+}
+
+.cta-texto {
+  font-size: 18px;
+  color: #000000;
+  margin: 0 0 30px 0;
+  max-width: 600px;
+}
+
+.botao-cta {
+  display: inline-block;
+  font-family: "Barlow", sans-serif;
+  border: 0;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  background-color: #000000;
+  padding: 15px 40px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.botao-cta:hover {
+  background-color: #222222;
+}
+
+/* Responsividade história */
+@media (max-width: 768px) {
+  .hero-titulo {
+    font-size: 32px;
+  }
+
+  .memoria,
+  .memoria-invertida {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .memoria-imagem img {
+    height: 300px;
+  }
+
+  .secao-titulo {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
 }

@@ -23,7 +23,8 @@ body {
     background-color: var(--fundo);
     color: var(--branco);
     min-height: 100vh;
-    padding: 30px 15px;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 button {
@@ -43,7 +44,7 @@ button:not(:disabled) {
 }
 
 button:not(:disabled):hover {
-    background-color: #c9124e;
+    background-color: #03da59d2;
 }
 
 button:disabled {
@@ -52,13 +53,45 @@ button:disabled {
     cursor: not-allowed;
 }
 
-#btnIniciarQuiz {
-    display: block;
+/* Layout principal do quiz */
+.quiz-wrapper {
     width: 100%;
-    max-width: 250px;
-    margin: 15px auto;
-    padding: 15px;
-    font-size: 16px;
+    min-height: calc(100vh - var(--tamanho-header) - var(--tamanho-footer));
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    background-color: var(--fundo);
+}
+
+.quiz-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Container do jogo e pontuação */
+#pontuacaoEJogo {
+    width: 100%;
+    background-color: var(--branco);
+    color: var(--preto);
+    border-radius: 16px;
+    border: 2px solid var(--borda);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Botão iniciar */
+#btnIniciarQuiz {
+    width: 100%;
+    max-width: 300px;
+    margin: 30px auto;
+    padding: 18px;
+    font-size: 18px;
+    display: block;
     background-color: var(--rosa-botao);
     color: var(--branco);
 }
@@ -67,6 +100,7 @@ button:disabled {
     background-color: #03da59d2;
 }
 
+/* Pontuação */
 #pontuacao {
     width: 100%;
     display: flex;
@@ -75,9 +109,7 @@ button:disabled {
     background-color: var(--branco);
     color: var(--preto);
     padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    border: 1px solid var(--borda);
+    border-bottom: 1px solid #dddddd;
 }
 
 #pontuacao span {
@@ -93,7 +125,7 @@ button:disabled {
 }
 
 #pontuacaoDuranteJogo span {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
 }
 
@@ -105,31 +137,46 @@ button:disabled {
 
 #spanPontuacaoFinal {
     display: block;
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 48px;
+    font-weight: 900;
     color: var(--rosa-botao) !important;
-    margin: 8px;
+    margin: 10px 0;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 #msgFinal {
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+    margin: 20px 0 20px 0;
+    padding: 16px 24px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border: 2px solid;
+    display: inline-block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* Área do jogo */
 #jogo {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     background-color: var(--branco);
-    border: 1px solid var(--borda);
-    border-radius: 8px;
-    padding: 20px;
+    border: none;
+    border-radius: 0;
+    padding: 24px;
     color: var(--preto);
 }
 
 #infoQuestao {
-    margin-bottom: 10px;
+    margin-bottom: 4px;
 }
 
 #infoQuestao span {
@@ -142,13 +189,13 @@ button:disabled {
     background-color: #F5F5F5;
     padding: 20px;
     border-left: 4px solid var(--rosa-botao);
-    border-radius: 5px;
-    margin-bottom: 10px;
+    border-radius: 8px;
+    margin-bottom: 4px;
 }
 
 #perguntaDaQuestaoAtual span {
     display: block;
-    font-size: 17px;
+    font-size: 18px;
     font-weight: bold;
     color: var(--preto);
     line-height: 1.5;
@@ -157,7 +204,7 @@ button:disabled {
 #infoAlternativas {
     font-size: 13px;
     color: var(--cinza);
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 #opcoes {
@@ -173,8 +220,8 @@ button:disabled {
 }
 
 #opcoes input[type="radio"] {
-    width: 17px;
-    height: 17px;
+    width: 18px;
+    height: 18px;
     accent-color: var(--rosa-botao);
     cursor: pointer;
     flex-shrink: 0;
@@ -182,14 +229,16 @@ button:disabled {
 
 #opcoes label {
     flex: 1;
-    padding: 15px;
+    padding: 14px;
     border: 1px solid var(--borda);
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 15px;
     transition: 0.2s;
     color: var(--preto);
     background-color: var(--branco);
+    display: block;
+    text-align: left;
 }
 
 #opcoes label:hover:not(.text-success-with-bg):not(.text-danger-with-bg) {
@@ -201,14 +250,16 @@ button:disabled {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    margin-top: 15px;
-    padding-top: 15px;
+    margin-top: 20px;
+    padding-top: 20px;
     border-top: 1px solid var(--borda);
 }
 
 #botoes button {
     flex: 1;
-    min-width: 140px;
+    min-width: 150px;
+    padding: 14px;
+    font-size: 15px;
 }
 
 .text-success-with-bg {
@@ -216,6 +267,7 @@ button:disabled {
     color: var(--branco) !important;
     border-color: var(--verde) !important;
     font-weight: bold;
+    border: 2px solid var(--verde) !important;
 }
 
 .text-danger-with-bg {
@@ -223,6 +275,15 @@ button:disabled {
     color: var(--branco) !important;
     border-color: var(--vermelho-erro) !important;
     font-weight: bold;
+    border: 2px solid var(--vermelho-erro) !important;
+}
+
+.text-warning-with-bg {
+    background-color: var(--amarelo) !important;
+    color: var(--preto) !important;
+    border-color: var(--amarelo) !important;
+    font-weight: bold;
+    border: 2px solid var(--amarelo) !important;
 }
 
 .text-warning-with-bg {
@@ -261,23 +322,24 @@ button:disabled {
     padding: 10px;
 }
 
-.quiz-container {
-    max-width: 650px;
-    width: 100%;
-    margin: 0 auto;
-}
+/* Responsividade */
+@media (max-width: 768px) {
+    .quiz-wrapper {
+        padding: 20px 15px;
+    }
 
-.quiz-wrapper {
-    padding-bottom: 80px;
-}
+    #pontuacaoEJogo {
+        border-radius: 12px;
+    }
 
-@media (max-width: 600px) {
-    body {
-        padding: 15px 10px;
+    #btnIniciarQuiz {
+        margin: 20px auto;
+        width: 100%;
+        max-width: none;
     }
 
     #jogo {
-        padding: 15px;
+        padding: 16px;
     }
 
     #botoes {
@@ -291,5 +353,35 @@ button:disabled {
     #pontuacaoDuranteJogo {
         flex-direction: column;
         align-items: center;
+        gap: 8px;
+    }
+
+    #opcoes label {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    #perguntaDaQuestaoAtual span {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .quiz-wrapper {
+        padding: 15px 10px;
+    }
+
+    #btnIniciarQuiz {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    #jogo {
+        padding: 14px;
+    }
+
+    #opcoes input[type="radio"] {
+        width: 16px;
+        height: 16px;
     }
 }

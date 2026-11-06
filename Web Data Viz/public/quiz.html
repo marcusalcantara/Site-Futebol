@@ -41,7 +41,7 @@
 
     <!-- Quiz -->
     <div class="quiz-wrapper">
-        <div class="container quiz-container">
+        <div class="quiz-container">
             <div id="pontuacaoEJogo">
                 <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
@@ -50,10 +50,12 @@
                         <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas">0</span></span>
                         <span class="width-fit-content">Quantidade de erros: <span id="spanErradas">0</span></span>
                     </div>
-                    <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
+                    <div id="pontuacaoFinalJogo" class="flex-colunar padding-8" style="display:none;">
                         <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
                             <span id="spanPontuacaoFinal">***</span>
                         </span>
+                    </div>
+                    <div id="resultadoFinal" class="flex-colunar padding-8">
                         <span id="msgFinal" class="width-fit-content">***</span>
                     </div>
                 </div>
@@ -110,277 +112,456 @@
         </div>
     </div>
 
+    <script>
+        function verificarSessoe() {
+            var email = sessionStorage.EMAIL_USUARIO;
+            var nome = sessionStorage.NOME_USUARIO;
+
+            if (!email || !nome) {
+                window.location = "./login.html";
+            }
+        }
+
+        // 30 perguntas sobre história do futebol (fáceis, médias e difíceis)
+        const listaDeQuestoes = [
+            // Fáceis
+            {
+                pergunta: "Em que país nasceu o futebol moderno?",
+                alternativaA: "Inglaterra",
+                alternativaB: "Brasil",
+                alternativaC: "Alemanha",
+                alternativaD: "Argentina",
+                alternativaCorreta: "alternativaA"
+            },
+            {
+                pergunta: "Quantos jogadores cada time tem em campo durante uma partida?",
+                alternativaA: "9",
+                alternativaB: "10",
+                alternativaC: "11",
+                alternativaD: "12",
+                alternativaCorreta: "alternativaC"
+            },
+            {
+                pergunta: "Qual o nome do troféu entregue ao campeão da Copa do Mundo?",
+                alternativaA: "Taça Jules Rimet",
+                alternativaB: "Taça FIFA",
+                alternativaC: "Taça de Ouro",
+                alternativaD: "Taça das Nações",
+                alternativaCorreta: "alternativaA"
+            },
+            {
+                pergunta: "Em que ano o Brasil venceu sua primeira Copa do Mundo?",
+                alternativaA: "1958",
+                alternativaB: "1962",
+                alternativaC: "1970",
+                alternativaD: "1994",
+                alternativaCorreta: "alternativaA"
+            },
+            {
+                pergunta: "Quem é considerado o rei do futebol?",
+                alternativaA: "Pelé",
+                alternativaB: "Maradona",
+                alternativaC: "Messi",
+                alternativaD: "Cristiano Ronaldo",
+                alternativaCorreta: "alternativaA"
+            },
+
+            // Médias
+            {
+                pergunta: "Qual seleção venceu a Copa do Mundo de 2014?",
+                alternativaA: "Argentina",
+                alternativaB: "Alemanha",
+                alternativaC: "Holanda",
+                alternativaD: "Brasil",
+                alternativaCorreta: "alternativaB"
+            },
+            {
+                pergunta: "Em que ano foi criada a Copa Libertadores da América?",
+                alternativaA: "1955",
+                alternativaB: "1960",
+                alternativaC: "1965",
+                alternativaD: "1970",
+                alternativaCorreta: "alternativaB"
+            },
+            {
+                pergunta: "Qual país sediou a Copa do Mundo de 2018?",
+                alternativaA: "Rússia",
+                alternativaB: "Brasil",
+                alternativaC: "Alemanha",
+                alternativaD: "França",
+                alternativaCorreta: "alternativaA"
+            },
+            {
+                pergunta: "Quem marcou o famoso gol da 'Mão de Deus'?",
+                alternativaA: "Diego Maradona",
+                alternativaB: "Pelé",
+                alternativaC: "Ronaldo",
+                alternativaD: "Romário",
+                alternativaCorreta: "alternativaA"
+            },
+            {
+                pergunta: "Qual time venceu a Liga dos Campeões da UEFA em 2005, na famosa final de Istambul?",
+                alternativaA: "Milan",
+                alternativaB: "Liverpool",
+                alternativaC: "Barcelona",
+                alternativaD: "Chelsea",
+                alternativaCorreta: "alternativaB"
+            },
+            {
+                pergunta: "Em que ano a FIFA foi fundada?",
+                alternativaA: "1900",
+                alternativaB: "1904",
+                alternativaC: "1912",
+                alternativaD: "1920",
+                alternativaCorreta: "alternativaB"
+            },
+
+            // Difíceis
+            {
+                pergunta: "Qual foi o primeiro país a vencer uma Copa do Mundo fora de seu continente?",
+                alternativaA: "Brasil",
+                alternativaB: "Alemanha",
+                alternativaC: "Itália",
+                alternativaD: "Argentina",
+                alternativaCorreta: "alternativaA"
+            },
+            {
+                pergunta: "Quantas seleções participaram da primeira Copa do Mundo, em 1930?",
+                alternativaA: "8",
+                alternativaB: "10",
+                alternativaC: "13",
+                alternativaD: "16",
+                alternativaCorreta: "alternativaC"
+            },
+            {
+                pergunta: "Qual seleção venceu a primeira Copa do Mundo, em 1930?",
+                alternativaA: "Argentina",
+                alternativaB: "Brasil",
+                alternativaC: "Uruguai",
+                alternativaD: "Estados Unidos",
+                alternativaCorreta: "alternativaC"
+            },
+            {
+                pergunta: "Qual país sediou a Copa do Mundo de 1950, conhecida pelo Maracanazo?",
+                alternativaA: "Uruguai",
+                alternativaB: "Brasil",
+                alternativaC: "Suíça",
+                alternativaD: "Suécia",
+                alternativaCorreta: "alternativaB"
+            },
+            {
+                pergunta: "Quem é o único jogador a ter vencido três Copas do Mundo como jogador?",
+                alternativaA: "Diego Maradona",
+                alternativaB: "Pelé",
+                alternativaC: "Johan Cruyff",
+                alternativaD: "Zinédine Zidane",
+                alternativaCorreta: "alternativaB"
+            },
+            {
+                pergunta: "Em que ano foi realizada a primeira Copa do Mundo da FIFA?",
+                alternativaA: "1930",
+                alternativaB: "1934",
+                alternativaC: "1938",
+                alternativaD: "1950",
+                alternativaCorreta: "alternativaA"
+            },
+            {
+                pergunta: "Qual foi o primeiro país africano a participar de uma Copa do Mundo?",
+                alternativaA: "Nigéria",
+                alternativaB: "Camarões",
+                alternativaC: "Egito",
+                alternativaD: "Marrocos",
+                alternativaCorreta: "alternativaC"
+            },
+            {
+                pergunta: "Quem marcou o gol da vitória da Inglaterra sobre a Alemanha Ocidental na prorrogação da final de 1966?",
+                alternativaA: "Bobby Charlton",
+                alternativaB: "Geoff Hurst",
+                alternativaC: "Martin Peters",
+                alternativaD: "Jimmy Greaves",
+                alternativaCorreta: "alternativaB"
+            },
+            {
+                pergunta: "Qual país sediou a Copa do Mundo de 1966, vencida pela Inglaterra?",
+                alternativaA: "Alemanha Ocidental",
+                alternativaB: "Brasil",
+                alternativaC: "Inglaterra",
+                alternativaD: "México",
+                alternativaCorreta: "alternativaC"
+            },
+            {
+                pergunta: "Em que ano a Suécia sediou a Copa do Mundo vencida pelo Brasil?",
+                alternativaA: "1958",
+                alternativaB: "1994",
+                alternativaC: "1938",
+                alternativaD: "1970",
+                alternativaCorreta: "alternativaA"
+            },
+            {
+                pergunta: "Quem foi o artilheiro da Copa do Mundo de 2006?",
+                alternativaA: "Ronaldo",
+                alternativaB: "Miroslav Klose",
+                alternativaC: "Zinedine Zidane",
+                alternativaD: "Ronaldinho",
+                alternativaCorreta: "alternativaB"
+            },
+            {
+                pergunta: "Qual seleção venceu a Copa das Confederações de 2013?",
+                alternativaA: "Brasil",
+                alternativaB: "Espanha",
+                alternativaC: "Itália",
+                alternativaD: "Argentina",
+                alternativaCorreta: "alternativaA"
+            },
+            {
+                pergunta: "Em que ano a Espanha venceu sua primeira Copa do Mundo?",
+                alternativaA: "2006",
+                alternativaB: "2010",
+                alternativaC: "2014",
+                alternativaD: "2018",
+                alternativaCorreta: "alternativaB"
+            },
+            {
+                pergunta: "Quem foi o capitão da seleção alemã na conquista da Copa do Mundo de 2014?",
+                alternativaA: "Philipp Lahm",
+                alternativaB: "Miroslav Klose",
+                alternativaC: "Bastian Schweinsteiger",
+                alternativaD: "Manuel Neuer",
+                alternativaCorreta: "alternativaA"
+            },
+            {
+                pergunta: "Qual país venceu a Copa América de 2019?",
+                alternativaA: "Argentina",
+                alternativaB: "Brasil",
+                alternativaC: "Uruguai",
+                alternativaD: "Chile",
+                alternativaCorreta: "alternativaB"
+            },
+            {
+                pergunta: "Em que ano o Maracanã foi inaugurado?",
+                alternativaA: "1950",
+                alternativaB: "1954",
+                alternativaC: "1940",
+                alternativaD: "1960",
+                alternativaCorreta: "alternativaA"
+            },
+            {
+                pergunta: "Quem criou as primeiras regras modernas do futebol em 1863?",
+                alternativaA: "FIFA",
+                alternativaB: "The Football Association",
+                alternativaC: "UEFA",
+                alternativaD: "IFFHS",
+                alternativaCorreta: "alternativaB"
+            },
+            {
+                pergunta: "Qual seleção venceu a Eurocopa de 2016?",
+                alternativaA: "França",
+                alternativaB: "Portugal",
+                alternativaC: "Alemanha",
+                alternativaD: "Itália",
+                alternativaCorreta: "alternativaB"
+            },
+            {
+                pergunta: "Em que ano o Brasil sediou a Copa do Mundo pela segunda vez?",
+                alternativaA: "2014",
+                alternativaB: "2018",
+                alternativaC: "2022",
+                alternativaD: "2010",
+                alternativaCorreta: "alternativaA"
+            }
+        ];
+
+        // variáveis globais
+        let questoesSorteadas = []
+        let numeroDaQuestaoAtual = 0
+        let pontuacaoFinal = 0
+        let tentativaIncorreta = 0
+        let certas = 0
+        let erradas = 0
+        const quantidadeDeQuestoesExibir = 10
+
+        function embaralhar(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function sortearQuestoes() {
+            const embaralhadas = embaralhar([...listaDeQuestoes]);
+            questoesSorteadas = embaralhadas.slice(0, quantidadeDeQuestoesExibir);
+        }
+
+        function onloadEsconder() {
+            document.getElementById('pontuacao').style.display = "none"
+            document.getElementById('jogo').style.display = "none"
+        }
+
+        function iniciarQuiz() {
+            sortearQuestoes();
+            numeroDaQuestaoAtual = 0;
+            pontuacaoFinal = 0;
+            certas = 0;
+            erradas = 0;
+
+            document.getElementById('pontuacao').style.display = "flex"
+            document.getElementById('jogo').style.display = "flex"
+            document.getElementById('btnIniciarQuiz').style.display = "none"
+
+            document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoesExibir
+            document.getElementById("spanCertas").innerHTML = certas
+            document.getElementById("spanErradas").innerHTML = erradas
+            document.getElementById('msgFinal').innerHTML = "***"
+
+            preencherHTMLcomQuestaoAtual(0)
+
+            btnSubmeter.disabled = false
+            btnProx.disabled = true
+            btnTentarNovamente.disabled = true
+        }
+
+        function preencherHTMLcomQuestaoAtual(index) {
+            habilitarAlternativas(true)
+            const questaoAtual = questoesSorteadas[index]
+            numeroDaQuestaoAtual = index
+            document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1
+            document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+            document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+            document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+            document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+            document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+        }
+
+        function submeter() {
+            const options = document.getElementsByName("option");
+
+            let hasChecked = false
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].checked) {
+                    hasChecked = true
+                    break
+                }
+            }
+
+            if (!hasChecked) {
+                alert("Não há alternativas escolhidas. Escolha uma opção.")
+            } else {
+                btnSubmeter.disabled = true
+                btnProx.disabled = false
+
+                habilitarAlternativas(false)
+
+                checarResposta()
+            }
+        }
+
+        function habilitarAlternativas(trueOrFalse) {
+            let opcaoEscolhida = trueOrFalse ? false : true
+
+            primeiraOpcao.disabled = opcaoEscolhida
+            segundaOpcao.disabled = opcaoEscolhida
+            terceiraOpcao.disabled = opcaoEscolhida
+            quartaOpcao.disabled = opcaoEscolhida
+
+        }
+
+        function avancar() {
+            btnProx.disabled = true
+            btnSubmeter.disabled = false
+
+            desmarcarRadioButtons()
+
+            if (numeroDaQuestaoAtual < quantidadeDeQuestoesExibir - 1) {
+                preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+            } else if (numeroDaQuestaoAtual == quantidadeDeQuestoesExibir - 1) {
+                alert("Atenção... a próxima é a ultima questão!")
+                preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+            } else {
+                finalizarJogo()
+            }
+            limparCoresBackgroundOpcoes()
+        }
+
+        function tentarNovamente() {
+            window.location.reload()
+        }
+
+        function checarResposta() {
+            const questaoAtual = questoesSorteadas[numeroDaQuestaoAtual]
+            const respostaQuestaoAtual = questaoAtual.alternativaCorreta
+
+            const options = document.getElementsByName("option");
+
+            let alternativaCorreta = null
+
+            options.forEach((option) => {
+                if (option.value === respostaQuestaoAtual) {
+                    alternativaCorreta = option.labels[0].id
+                }
+            })
+
+            options.forEach((option) => {
+                if (option.checked === true && option.value === respostaQuestaoAtual) {
+                    document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                    pontuacaoFinal++
+                    certas++
+                    document.getElementById("spanCertas").innerHTML = certas
+                    numeroDaQuestaoAtual++
+                } else if (option.checked && option.value !== respostaQuestaoAtual) {
+                    const wrongLabelId = option.labels[0].id
+
+                    document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
+                    document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                    tentativaIncorreta++
+                    erradas++
+                    document.getElementById("spanErradas").innerHTML = erradas
+                    numeroDaQuestaoAtual++
+                }
+            })
+        }
+
+        function limparCoresBackgroundOpcoes() {
+            const options = document.getElementsByName("option");
+            options.forEach((option) => {
+                document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
+                document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+            })
+        }
+
+        function desmarcarRadioButtons() {
+            const options = document.getElementsByName("option");
+            for (let i = 0; i < options.length; i++) {
+                options[i].checked = false;
+            }
+        }
+
+        function finalizarJogo() {
+            let textoParaMensagemFinal = null
+            let classComCoresParaMensagemFinal = null
+
+            if (pontuacaoFinal < 6) {
+                textoParaMensagemFinal = `DESEMPENHO ${pontuacaoFinal}/10`
+                classComCoresParaMensagemFinal = "text-danger-with-bg"
+            } else if (pontuacaoFinal >= 6 && pontuacaoFinal <= 7) {
+                textoParaMensagemFinal = `DESEMPENHO ${pontuacaoFinal}/10`
+                classComCoresParaMensagemFinal = "text-warning-with-bg"
+            } else if (pontuacaoFinal >= 8) {
+                textoParaMensagemFinal = `DESEMPENHO ${pontuacaoFinal}/10`
+                classComCoresParaMensagemFinal = "text-success-with-bg"
+            }
+
+            document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
+            document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
+
+            document.getElementById('jogo').classList.add("text-new-gray")
+
+            btnProx.disabled = true
+            btnSubmeter.disabled = true
+            btnTentarNovamente.disabled = false
+        }
+    </script>
+
 </body>
 
 </html>
-<script>
-    function verificarSessoe() {
-        var email = sessionStorage.EMAIL_USUARIO;
-        var nome = sessionStorage.NOME_USUARIO;
-
-        if (!email || !nome) {
-            window.location = "./login.html";
-        }
-    }
-
-    const listaDeQuestoes = [
-
-        {
-            pergunta: "Em que ano foi realizada a primeira Copa do Mundo da FIFA?",
-            alternativaA: "1930",
-            alternativaB: "1934",
-            alternativaC: "1938",
-            alternativaD: "1950",
-            alternativaCorreta: "alternativaA"
-        },
-
-        {
-            pergunta: "Qual país sediou a Copa do Mundo de 1950, conhecida pelo Maracanazo?",
-            alternativaA: "Uruguai",
-            alternativaB: "Brasil",
-            alternativaC: "Suíça",
-            alternativaD: "Suécia",
-            alternativaCorreta: "alternativaB"
-        },
-
-        {
-            pergunta: "Qual seleção venceu a primeira Copa do Mundo, em 1930?",
-            alternativaA: "Argentina",
-            alternativaB: "Brasil",
-            alternativaC: "Uruguai",
-            alternativaD: "Estados Unidos",
-            alternativaCorreta: "alternativaC"
-        },
-
-        {
-            pergunta: "Em que ano a FIFA foi fundada?",
-            alternativaA: "1900",
-            alternativaB: "1904",
-            alternativaC: "1912",
-            alternativaD: "1920",
-            alternativaCorreta: "alternativaB"
-        },
-
-        {
-            pergunta: "Quantas seleções participaram da primeira Copa do Mundo, em 1930?",
-            alternativaA: "8",
-            alternativaB: "10",
-            alternativaC: "13",
-            alternativaD: "16",
-            alternativaCorreta: "alternativaC"
-        },
-
-        {
-            pergunta: "Qual foi o primeiro país a vencer uma Copa do Mundo fora de seu continente?",
-            alternativaA: "Brasil",
-            alternativaB: "Alemanha",
-            alternativaC: "Itália",
-            alternativaD: "Argentina",
-            alternativaCorreta: "alternativaA"
-        },
-
-        {
-            pergunta: "Qual é o único jogador a ter vencido três Copas do Mundo como jogador?",
-            alternativaA: "Diego Maradona",
-            alternativaB: "Pelé",
-            alternativaC: "Johan Cruyff",
-            alternativaD: "Zinédine Zidane",
-            alternativaCorreta: "alternativaB"
-        },
-
-        {
-            pergunta: "Quem marcou o gol da vitória da Inglaterra sobre a Alemanha Ocidental na prorrogação da final de 1966?",
-            alternativaA: "Bobby Charlton",
-            alternativaB: "Geoff Hurst",
-            alternativaC: "Martin Peters",
-            alternativaD: "Jimmy Greaves",
-            alternativaCorreta: "alternativaB"
-        },
-
-        {
-            pergunta: "Em que ano foi criada a Copa Libertadores da América?",
-            alternativaA: "1955",
-            alternativaB: "1960",
-            alternativaC: "1965",
-            alternativaD: "1970",
-            alternativaCorreta: "alternativaB"
-        },
-
-        {
-            pergunta: "Qual país sediou a Copa do Mundo de 1966, vencida pela Inglaterra?",
-            alternativaA: "Alemanha Ocidental",
-            alternativaB: "Brasil",
-            alternativaC: "Inglaterra",
-            alternativaD: "México",
-            alternativaCorreta: "alternativaC"
-        }
-    ]
-
-    // variáveis globais
-    let numeroDaQuestaoAtual = 0
-    let pontuacaoFinal = 0
-    let tentativaIncorreta = 0
-    let certas = 0
-    let erradas = 0
-    let quantidadeDeQuestoes = listaDeQuestoes.length
-
-    function onloadEsconder() {
-        document.getElementById('pontuacao').style.display = "none"
-        document.getElementById('jogo').style.display = "none"
-    }
-
-    function iniciarQuiz() {
-        document.getElementById('pontuacao').style.display = "flex"
-        document.getElementById('jogo').style.display = "flex"
-        document.getElementById('btnIniciarQuiz').style.display = "none"
-
-        document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
-
-        preencherHTMLcomQuestaoAtual(0)
-
-        btnSubmeter.disabled = false
-        btnProx.disabled = true
-        btnTentarNovamente.disabled = true
-    }
-
-    function preencherHTMLcomQuestaoAtual(index) {
-        habilitarAlternativas(true)
-        const questaoAtual = listaDeQuestoes[index]
-        numeroDaQuestaoAtual = index
-        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1
-        document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
-        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
-        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
-        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
-        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
-    }
-
-    function submeter() {
-        const options = document.getElementsByName("option");
-
-        let hasChecked = false
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].checked) {
-                hasChecked = true
-                break
-            }
-        }
-
-        if (!hasChecked) {
-            alert("Não há alternativas escolhidas. Escolha uma opção.")
-        } else {
-            btnSubmeter.disabled = true
-            btnProx.disabled = false
-
-            habilitarAlternativas(false)
-
-            checarResposta()
-        }
-    }
-
-    function habilitarAlternativas(trueOrFalse) {
-        let opcaoEscolhida = trueOrFalse ? false : true
-
-        primeiraOpcao.disabled = opcaoEscolhida
-        segundaOpcao.disabled = opcaoEscolhida
-        terceiraOpcao.disabled = opcaoEscolhida
-        quartaOpcao.disabled = opcaoEscolhida
-
-    }
-
-    function avancar() {
-        btnProx.disabled = true
-        btnSubmeter.disabled = false
-
-        desmarcarRadioButtons()
-
-        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
-            alert("Atenção... a próxima é a ultima questão!")
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-        } else {
-            finalizarJogo()
-        }
-        limparCoresBackgroundOpcoes()
-    }
-
-    function tentarNovamente() {
-        window.location.reload()
-    }
-
-    function checarResposta() {
-        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]
-        const respostaQuestaoAtual = questaoAtual.alternativaCorreta
-
-        const options = document.getElementsByName("option");
-
-        let alternativaCorreta = null
-
-        options.forEach((option) => {
-            if (option.value === respostaQuestaoAtual) {
-                alternativaCorreta = option.labels[0].id
-            }
-        })
-
-        options.forEach((option) => {
-            if (option.checked === true && option.value === respostaQuestaoAtual) {
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-                pontuacaoFinal++
-                certas++
-                document.getElementById("spanCertas").innerHTML = certas
-                numeroDaQuestaoAtual++
-            } else if (option.checked && option.value !== respostaQuestaoAtual) {
-                const wrongLabelId = option.labels[0].id
-
-                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-                tentativaIncorreta++
-                erradas++
-                document.getElementById("spanErradas").innerHTML = erradas
-                numeroDaQuestaoAtual++
-            }
-        })
-    }
-
-    function limparCoresBackgroundOpcoes() {
-        const options = document.getElementsByName("option");
-        options.forEach((option) => {
-            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
-            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
-        })
-    }
-
-    function desmarcarRadioButtons() {
-        const options = document.getElementsByName("option");
-        for (let i = 0; i < options.length; i++) {
-            options[i].checked = false;
-        }
-    }
-
-    function finalizarJogo() {
-        let textoParaMensagemFinal = null
-        let classComCoresParaMensagemFinal = null
-
-        if (pontuacaoFinal <= 4) {
-            textoParaMensagemFinal = `${pontuacaoFinal}/10 Precisa estudar mais sobre futebol`
-            classComCoresParaMensagemFinal = "text-danger-with-bg"
-        } else if (pontuacaoFinal >= 5 && pontuacaoFinal <= 7) {
-            textoParaMensagemFinal = `${pontuacaoFinal}/10 Bom desempenho`
-            classComCoresParaMensagemFinal = "text-warning-with-bg"
-        } else if (pontuacaoFinal >= 8) {
-            textoParaMensagemFinal = `${pontuacaoFinal}/10 Ótimo desempenho`
-            classComCoresParaMensagemFinal = "text-success-with-bg"
-        }
-
-        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
-        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
-
-        document.getElementById('jogo').classList.add("text-new-gray")
-
-        btnProx.disabled = true
-        btnSubmeter.disabled = true
-        btnTentarNovamente.disabled = false
-    }
-</script>
