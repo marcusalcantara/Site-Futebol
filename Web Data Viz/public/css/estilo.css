@@ -1692,3 +1692,98 @@ body.pagina-historia {
     display: none;
   }
 }
+
+/* ============================================================
+   FOOTER — VERSÃO REFINADA
+   ============================================================ */
+.footer {
+  background:
+    radial-gradient(ellipse at bottom, rgba(3, 218, 89, 0.06), transparent 60%),
+    #0b0b0b;
+  color: #cfcfcf;
+  border-top: 1px solid rgba(3, 218, 89, 0.25);
+  display: block;
+  height: auto;
+  font-size: 15px;
+  padding: 64px 24px 30px 24px;
+}
+
+.footer-interno {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.footer-marca {
+  max-width: 420px;
+}
+
+.footer-logo {
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 800;
+  color: #03da59;
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 22px rgba(3, 218, 89, 0.3);
+}
+
+.footer-tagline {
+  color: #8f8f8f;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 300;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-nav a {
+  color: #c9c9c9;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 9px 16px;
+  border-radius: 40px;
+  transition: all 0.25s ease;
+}
+
+.footer-nav a:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.footer-base {
+  max-width: 1180px;
+  margin: 44px auto 0 auto;
+  padding-top: 22px;
+  border-top: 1px solid #1c1c1c;
+  text-align: center;
+  color: #6f6f6f;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding: 48px 20px 26px 20px;
+  }
+
+  .footer-interno {
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  .footer-nav {
+    gap: 4px;
+  }
+}
