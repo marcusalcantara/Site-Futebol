@@ -15,10 +15,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
-<body>
+<body class="pagina-auth">
 
     <!--Header-->
-
     <div class="header">
         <div class="container">
             <h1 class="titulo">Além das Quatro Linhas</h1>
@@ -40,17 +39,28 @@
         </div>
     </div>
 
-
-    <div class="login">
+    <main class="auth-page">
         <div class="alerta_erro">
             <div class="card_erro" id="cardErro">
                 <span id="mensagem_erro"></span>
             </div>
         </div>
-        <div class="container">
-            <div class="card card-login">
-                <h2>Olá de volta!</h2>
-                <div class="formulario">
+
+        <div class="auth-layout">
+            <aside class="auth-painel">
+                <span class="story-kicker">Bem-vindo de volta</span>
+                <h2 class="auth-painel-titulo">A história<br><span>continua aqui.</span></h2>
+                <p class="auth-painel-texto">
+                    Entre na sua conta para jogar o quiz e testar seus conhecimentos
+                    sobre a história do futebol.
+                </p>
+            </aside>
+
+            <section class="auth-card">
+                <h2 class="auth-titulo">Olá de volta!</h2>
+                <p class="auth-subtitulo">Acesse sua conta para continuar.</p>
+
+                <div class="formulario auth-form">
                     <div class="campo">
                         <span>E-mail:</span>
                         <input id="email_input" type="text" placeholder="Login">
@@ -59,7 +69,7 @@
                         <span>Senha:</span>
                         <input id="senha_input" type="password" placeholder="******">
                     </div>
-                    <button class="botao" onclick="entrar()">Entrar</button>
+                    <button class="botao auth-botao" onclick="entrar()">Entrar</button>
                 </div>
 
                 <div id="div_aguardar" class="loading-div">
@@ -67,9 +77,11 @@
                 </div>
 
                 <div id="div_erros_login"></div>
-            </div>
+
+                <p class="auth-troca">Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+            </section>
         </div>
-    </div>
+    </main>
 
     <!--footer inicio-->
     <div class="footer">
@@ -79,80 +91,78 @@
     </div>
     <!--footer fim-->
 
+    <script>
+        function entrar() {
+            aguardar();
+
+            var emailVar = email_input.value;
+            var senhaVar = senha_input.value;
+
+            if (emailVar == "" || senhaVar == "") {
+                cardErro.style.display = "block"
+                mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+                finalizarAguardar();
+                return false;
+            }
+            else {
+                setInterval(sumirMensagem, 5000)
+            }
+
+            console.log("FORM LOGIN: ", emailVar);
+            console.log("FORM SENHA: ", senhaVar);
+
+            fetch("/usuarios/autenticar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO entrar()!")
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(json => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.id;
+                        sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                        setTimeout(function () {
+                            window.location = "./quiz.html";
+                        }, 1000); // apenas para exibir o loading
+
+                    });
+
+                } else {
+
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                        finalizarAguardar(texto);
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
+            })
+
+            return false;
+        }
+
+        function sumirMensagem() {
+            cardErro.style.display = "none"
+        }
+
+    </script>
+
 </body>
 
 </html>
-
-<script>
-
-
-    function entrar() {
-        aguardar();
-
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
-
-        if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
-            return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
-
-                    setTimeout(function () {
-                        window.location = "./quiz.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
-    }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
-
-</script>

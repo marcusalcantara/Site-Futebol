@@ -42,6 +42,12 @@
     <!-- Quiz -->
     <div class="quiz-wrapper">
         <div class="quiz-container">
+            <div class="quiz-topo" id="quizTopo">
+                <span class="story-kicker">Desafio</span>
+                <h2 class="quiz-titulo">Quiz de História<br><span>do Futebol</span></h2>
+                <p class="quiz-subtitulo">Responda 10 perguntas sorteadas aleatoriamente e teste seus conhecimentos.</p>
+            </div>
+
             <div id="pontuacaoEJogo">
                 <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
@@ -967,6 +973,7 @@
             document.getElementById('pontuacao').style.display = "flex"
             document.getElementById('jogo').style.display = "flex"
             document.getElementById('btnIniciarQuiz').style.display = "none"
+            document.getElementById('quizTopo').style.display = "none"
 
             document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoesExibir
             document.getElementById("spanCertas").innerHTML = certas

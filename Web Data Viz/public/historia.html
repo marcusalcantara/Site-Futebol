@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
-<body>
+<body class="pagina-historia">
 
     <!-- Header -->
     <div class="header">
@@ -36,56 +36,93 @@
         </div>
     </div>
 
-    <!-- Hero / Introdução -->
-    <section class="historia-hero">
-        <div class="container">
-            <div class="hero-conteudo">
-                <h2 class="hero-titulo">Minha História com o Futebol</h2>
+    <!-- Hero -->
+    <header class="story-hero">
+        <div class="story-hero-fundo"></div>
+        <div class="story-hero-conteudo">
+            <span class="story-kicker">Uma jornada pessoal</span>
+            <h2 class="story-titulo">Minha História<br><span>com o Futebol</span></h2>
+            <p class="story-subtitulo">Da infância ao campo — os momentos que transformaram um jogo em paixão.</p>
+            <a href="#capitulo-01" class="story-scroll">
+                <span>Começar a história</span>
+                <span class="story-seta">↓</span>
+            </a>
+        </div>
+    </header>
 
-            </div>
+    <!-- Manifesto / introdução -->
+    <section class="story-intro">
+        <div class="story-intro-conteudo">
+            <p class="story-intro-texto">
+                Todo mundo tem uma primeira lembrança com o futebol. A minha começa em casa,
+                com apoio, dedicação e aquela bola que nunca parava de rolar.
+                Estas são as memórias que construíram a minha relação com o esporte.
+            </p>
         </div>
     </section>
 
-    <!-- Linha do tempo / Memórias (empilhadas verticalmente) -->
-    <section class="historia-memorias">
-        <div class="container">
-            <!-- <h3 class="secao-titulo">Minhas Memórias em Campo</h3> -->
+    <!-- Jornada em capítulos -->
+    <main class="story-jornada">
 
-            <div class="memoria-card">
-                <div class="memoria-conteudo">
-                    <div class="memoria-imagem">
-                        <img src="./assets/imgs-fut/comPai.jpg" alt="Foto com meu pai">
-                        
-                    </div>
-                    <div class="memoria-texto">
-                        <h4>Onde tudo começou</h4>
-                        <p>Minha paixão pelo futebol começou ainda na infância, quando esse esporte passou a fazer parte da minha vida. Desde pequeno, tive o apoio da minha família, principalmente do meu pai, que teve um papel muito importante nessa história. Aos poucos, o futebol deixou de ser apenas um jogo e se tornou algo especial para mim, criando lembranças que levo comigo até hoje.</p>
-                    </div>
+        <!-- Capítulo 01 -->
+        <section class="story-capitulo" id="capitulo-01">
+            <div class="story-capitulo-interno">
+                <span class="story-numero" aria-hidden="true">01</span>
+                <div class="story-midia">
+                    <img src="./assets/imgs-fut/comPai.jpg" alt="Foto com meu pai">
+                </div>
+                <div class="story-texto">
+                    <span class="story-rotulo">Capítulo 01 — O início</span>
+                    <h3 class="story-titulo-capitulo">Onde tudo começou</h3>
+                    <p>
+                        Minha paixão pelo futebol começou ainda na infância, quando esse esporte
+                        passou a fazer parte da minha vida. Desde pequeno, tive o apoio da minha
+                        família, principalmente do meu pai, que teve um papel muito importante
+                        nessa história.
+                    </p>
+                    <p>
+                        Aos poucos, o futebol deixou de ser apenas um jogo e se tornou algo
+                        especial para mim, criando lembranças que levo comigo até hoje.
+                    </p>
                 </div>
             </div>
+        </section>
 
-            <div class="memoria-card">
-                <div class="memoria-conteudo">
-                    <div class="memoria-imagem">
-                        <img src="./assets/imgs-fut/Elenco-Fujii.jpg" alt="Elenco da escolinha Fujii">
-                        
-                    </div>
-                    <div class="memoria-texto">
-                        <h4>A escolinha Fujii (2016)</h4>
-                        <p>Comecei a fazer escolinha de futebol na Fujii em 2016, e foi lá que minha paixão pelo esporte cresceu cada vez mais. Durante essa fase, aprendi coisas novas, fiz amizades e tive a oportunidade de melhorar minhas habilidades dentro de campo. Eu gostava muito de participar dos treinos, jogar com os amigos e aproveitar cada momento, o que me fez gostar ainda mais do futebol.</p>
-                    </div>
+        <!-- Capítulo 02 -->
+        <section class="story-capitulo story-capitulo-invertido" id="capitulo-02">
+            <div class="story-capitulo-interno">
+                <span class="story-numero" aria-hidden="true">02</span>
+                <div class="story-midia">
+                    <img src="./assets/imgs-fut/Elenco-Fujii.jpg" alt="Elenco da escolinha Fujii">
+                </div>
+                <div class="story-texto">
+                    <span class="story-rotulo">Capítulo 02 — A escolinha</span>
+                    <h3 class="story-titulo-capitulo">A escolinha Fujii (2016)</h3>
+                    <p>
+                        Comecei a fazer escolinha de futebol na Fujii em 2016, e foi lá que minha
+                        paixão pelo esporte cresceu cada vez mais. Durante essa fase, aprendi
+                        coisas novas, fiz amizades e tive a oportunidade de melhorar minhas
+                        habilidades dentro de campo.
+                    </p>
+                    <p>
+                        Eu gostava muito de participar dos treinos, jogar com os amigos e
+                        aproveitar cada momento, o que me fez gostar ainda mais do futebol.
+                    </p>
                 </div>
             </div>
+        </section>
 
-        </div>
-    </section>
+    </main>
 
     <!-- CTA Quiz -->
-    <section class="historia-cta">
-        <div class="container">
-            <h3 class="cta-titulo">Que tal testar seus conhecimentos?</h3>
-            <p class="cta-texto">Faça o nosso quiz sobre a história do futebol e descubra o quanto você sabe sobre o esporte.</p>
-            <a href="./login.html" class="botao-cta">Fazer Login e Jogar o Quiz</a>
+    <section class="story-cta">
+        <div class="story-cta-conteudo">
+            <span class="story-rotulo story-rotulo-claro">A história continua</span>
+            <h3 class="story-cta-titulo">Que tal testar seus conhecimentos?</h3>
+            <p class="story-cta-texto">
+                Faça o nosso quiz sobre a história do futebol e descubra o quanto você sabe sobre o esporte.
+            </p>
+            <a href="./login.html" class="story-cta-botao">Fazer Login e Jogar o Quiz</a>
         </div>
     </section>
 
