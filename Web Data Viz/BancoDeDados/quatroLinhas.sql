@@ -9,3 +9,4 @@ senha VARCHAR(50)
 );	
 
 
+SELECT * FROM usuario;
