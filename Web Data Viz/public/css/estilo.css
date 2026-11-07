@@ -828,6 +828,12 @@ body.pagina-historia {
   z-index: 0;
 }
 
+body.pagina-historia .story-hero-fundo {
+  background-image: url("../assets/imgs-fut/minhaHistoria.jpg");
+  background-position: 45% 35%;
+  transform: none;
+}
+
 .story-hero-fundo::after {
   content: "";
   position: absolute;
