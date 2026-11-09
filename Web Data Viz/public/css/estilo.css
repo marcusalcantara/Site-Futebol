@@ -1199,6 +1199,69 @@ body.pagina-historia .story-hero-fundo {
 }
 
 /* ============================================================
+   HISTÓRIA DO FUTEBOL — LINHA DO TEMPO
+   ============================================================ */
+
+body.pagina-historia-futebol {
+  background-color: #080808;
+  color: #ffffff;
+}
+
+.story-midia-ano {
+  min-height: clamp(320px, 42vw, 520px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+  padding: 40px;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(3, 218, 89, 0.16), transparent 60%),
+    linear-gradient(160deg, #101a13 0%, #080808 70%);
+}
+
+.story-capitulo-invertido .story-midia-ano {
+  background:
+    radial-gradient(circle at 50% 30%, rgba(227, 176, 98, 0.16), transparent 60%),
+    linear-gradient(160deg, #1a1610 0%, #080808 70%);
+}
+
+.story-ano-grande {
+  font-size: clamp(56px, 9vw, 130px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -4px;
+  color: #03da59;
+  text-shadow: 0 0 40px rgba(3, 218, 89, 0.35);
+}
+
+.story-capitulo-invertido .story-ano-grande {
+  color: #e3b062;
+  text-shadow: 0 0 40px rgba(227, 176, 98, 0.35);
+}
+
+.story-ano-texto {
+  font-size: clamp(48px, 8vw, 110px);
+  letter-spacing: -2px;
+}
+
+.story-ano-legenda {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #9a9a9a;
+}
+
+@media (max-width: 860px) {
+  .story-midia-ano {
+    min-height: clamp(240px, 55vw, 360px);
+    padding: 30px;
+  }
+}
+
+/* ============================================================
    PÁGINAS INTERNAS — CONCEITO EDITORIAL (index / login / cadastro)
    ============================================================ */
 
@@ -1626,7 +1689,7 @@ body.pagina-historia .story-hero-fundo {
 }
 
 /* item separador "|" */
-.navbar > li:nth-child(3) {
+.navbar > li.nav-separador {
   color: rgba(255, 255, 255, 0.18);
   font-weight: 400;
   margin: 0 4px;
@@ -1665,6 +1728,22 @@ body.pagina-historia .story-hero-fundo {
 }
 
 /* ---------- Responsivo ---------- */
+@media (max-width: 1100px) {
+  .header .container {
+    gap: 12px;
+  }
+
+  .header .titulo {
+    font-size: 20px;
+  }
+
+  .navbar a,
+  .navbar li.agora {
+    font-size: 14px;
+    padding: 8px 11px;
+  }
+}
+
 @media (max-width: 760px) {
   .header {
     height: auto;
@@ -1694,7 +1773,7 @@ body.pagina-historia .story-hero-fundo {
     padding: 8px 14px;
   }
 
-  .navbar > li:nth-child(3) {
+  .navbar > li.nav-separador {
     display: none;
   }
 }
