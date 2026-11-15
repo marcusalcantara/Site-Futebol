@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz - História do Futebol | Além das Quatro Linhas</title>
 
-    <script src="./js/sessao.js"></script>
+    <script src="../js/sessao.js"></script>
 
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="stylesheet" href="./css/quiz.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="stylesheet" href="../css/quiz.css">
+    <link rel="icon" href="../assets/icon/favicon2.ico">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
@@ -23,20 +23,23 @@
             <h1 class="titulo">Além das Quatro Linhas</h1>
             <ul class="navbar">
                 <li>
-                    <a href="./index.html">Início</a>
+                    <a href="../index.html">Início</a>
                 </li>
                 <li>
-                    <a href="./historia-futebol.html">História do Futebol</a>
+                    <a href="../historia-futebol.html">História do Futebol</a>
                 </li>
                 <li>
-                    <a href="./historia.html">Minha História</a>
+                    <a href="../historia.html">Minha História</a>
+                </li>
+                <li>
+                    <a href="./dashboard.html">Meu Desempenho</a>
                 </li>
                 <li class="nav-separador">|</li>
                 <li>
-                    <a href="./login.html">Login</a>
+                    <a href="../login.html">Login</a>
                 </li>
                 <li>
-                    <a href="./cadastro.html">Cadastro</a>
+                    <a href="../cadastro.html">Cadastro</a>
                 </li>
             </ul>
         </div>
@@ -123,11 +126,12 @@
                 <p class="footer-tagline">Futebol, memórias e paixão — dentro e fora de campo.</p>
             </div>
             <nav class="footer-nav">
-                <a href="index.html">Início</a>
-                <a href="historia-futebol.html">História do Futebol</a>
-                <a href="historia.html">Minha História</a>
-                <a href="login.html">Login</a>
-                <a href="cadastro.html">Cadastro</a>
+                <a href="../index.html">Início</a>
+                <a href="../historia-futebol.html">História do Futebol</a>
+                <a href="../historia.html">Minha História</a>
+                <a href="./dashboard.html">Meu Desempenho</a>
+                <a href="../login.html">Login</a>
+                <a href="../cadastro.html">Cadastro</a>
             </nav>
         </div>
         <div class="footer-base">
@@ -140,7 +144,7 @@
             var email = sessionStorage.EMAIL_USUARIO;
             var nome = sessionStorage.NOME_USUARIO;
             if (!email || !nome) {
-                window.location = "./login.html";
+                window.location = "../login.html";
             }
         }
         const listaDeQuestoes = [

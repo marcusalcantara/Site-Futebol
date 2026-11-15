@@ -28,6 +28,25 @@ function salvar(req, res) {
     }1
 }
 
+function listarPorUsuario(req, res) {
+    var fkUsuario = req.params.fkUsuario;
+
+    if (fkUsuario == undefined) {
+        res.status(400).send("O ID do usuário está undefined!");
+    } else {
+        desempenhoModel.listarPorUsuario(fkUsuario)
+            .then(function (resultado) {
+                res.status(200).json(resultado);
+            })
+            .catch(function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao buscar o desempenho:", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
+
 module.exports = {
-    salvar
+    salvar,
+    listarPorUsuario
 };

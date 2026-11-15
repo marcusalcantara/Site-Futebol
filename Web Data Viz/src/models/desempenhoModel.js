@@ -5,11 +5,20 @@ function salvar(fkUsuario, acertos, erros, pontuacao) {
         INSERT INTO quiz (fkUsuario, acertos, erros, pontuacao)
         VALUES (${fkUsuario}, ${acertos}, ${erros}, ${pontuacao});
     `;
+    return database.executar(instrucaoSql);
+}
 
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+function listarPorUsuario(fkUsuario) {
+    var instrucaoSql = `
+        SELECT idQuiz, acertos, erros, pontuacao, dataTentativa
+        FROM quiz
+        WHERE fkUsuario = ${fkUsuario}
+        ORDER BY dataTentativa ASC;
+    `;
     return database.executar(instrucaoSql);
 }
 
 module.exports = {
-    salvar
+    salvar,
+    listarPorUsuario
 };
