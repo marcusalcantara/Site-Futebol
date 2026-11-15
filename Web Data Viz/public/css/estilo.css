@@ -1132,7 +1132,7 @@ body.pagina-historia .story-hero-fundo {
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
 }
 
-/* ---------- ANIMAÇÕES ---------- */
+
 @keyframes storyFadeUp {
   from {
     opacity: 0;
@@ -1198,10 +1198,6 @@ body.pagina-historia .story-hero-fundo {
   }
 }
 
-/* ============================================================
-   HISTÓRIA DO FUTEBOL
-   ============================================================ */
-
 body.pagina-historia-futebol {
   background-color: #080808;
   color: #ffffff;
@@ -1213,11 +1209,6 @@ body.pagina-historia-futebol .story-hero-fundo {
   transform: none;
 }
 
-/* ============================================================
-   PÁGINAS INTERNAS — CONCEITO EDITORIAL (index / login / cadastro)
-   ============================================================ */
-
-/* ---------- BOTÕES EDITORIAIS ---------- */
 .hero-acoes {
   display: flex;
   gap: 16px;
@@ -1354,7 +1345,6 @@ body.pagina-historia-futebol .story-hero-fundo {
   }
 }
 
-/* ---------- LOGIN / CADASTRO (AUTH) ---------- */
 .auth-page {
   min-height: calc(100vh - var(--tamanho-header) - var(--tamanho-footer));
   display: flex;
@@ -1580,10 +1570,6 @@ body.pagina-historia-futebol .story-hero-fundo {
     max-width: none;
   }
 }
-
-/* ============================================================
-   NAVBAR — VERSÃO REFINADA (glass + pílula ativa)
-   ============================================================ */
 .header {
   position: sticky;
   top: 0;
@@ -1640,7 +1626,7 @@ body.pagina-historia-futebol .story-hero-fundo {
   background: rgba(255, 255, 255, 0.07);
 }
 
-/* item separador "|" */
+
 .navbar > li.nav-separador {
   color: rgba(255, 255, 255, 0.18);
   font-weight: 400;
@@ -1648,7 +1634,7 @@ body.pagina-historia-futebol .story-hero-fundo {
   user-select: none;
 }
 
-/* página ativa em formato de pílula */
+
 .navbar li.agora {
   display: inline-flex;
   align-items: center;
@@ -1679,7 +1665,6 @@ body.pagina-historia-futebol .story-hero-fundo {
   background: transparent;
 }
 
-/* ---------- Responsivo ---------- */
 @media (max-width: 1100px) {
   .header .container {
     gap: 12px;
@@ -1730,9 +1715,6 @@ body.pagina-historia-futebol .story-hero-fundo {
   }
 }
 
-/* ============================================================
-   FOOTER — VERSÃO REFINADA
-   ============================================================ */
 .footer {
   background:
     radial-gradient(ellipse at bottom, rgba(3, 218, 89, 0.06), transparent 60%),
