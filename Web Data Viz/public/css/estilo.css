@@ -846,7 +846,6 @@ body.pagina-historia .story-hero-fundo {
   z-index: 1;
   max-width: 900px;
   text-align: center;
-  animation: storyFadeUp 1s ease both;
 }
 
 .story-kicker {
@@ -1025,11 +1024,6 @@ body.pagina-historia .story-hero-fundo {
   width: 100%;
   height: clamp(320px, 42vw, 520px);
   object-fit: cover;
-  transition: transform 0.7s ease;
-}
-
-.story-capitulo:hover .story-midia img {
-  transform: scale(1.04);
 }
 
 /* texto */
@@ -1293,12 +1287,10 @@ body.pagina-historia-futebol .story-hero-fundo {
   border: 1px solid #262626;
   border-radius: 20px;
   padding: 40px 28px;
-  transition: all 0.35s ease;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .valor-card:hover {
-  transform: translateY(-6px);
-  border-color: #03da59;
   box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5);
 }
 
@@ -1367,7 +1359,6 @@ body.pagina-historia-futebol .story-hero-fundo {
   border-radius: 26px;
   overflow: hidden;
   box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6);
-  animation: storyFadeUp 0.8s ease both;
 }
 
 .auth-painel {
