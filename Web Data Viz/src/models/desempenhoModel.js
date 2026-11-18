@@ -9,13 +9,11 @@ function salvar(fkUsuario, acertos, erros, pontuacao) {
 }
 
 function listarPorUsuario(fkUsuario) {
-    var instrucaoSql = `
-        SELECT idQuiz, acertos, erros, pontuacao, dataTentativa
-        FROM quiz
+    var instrucao = `
+        SELECT * FROM vw_desempenho
         WHERE fkUsuario = ${fkUsuario}
-        ORDER BY dataTentativa ASC;
-    `;
-    return database.executar(instrucaoSql);
+        ORDER BY dataTentativa ASC, idQuiz ASC;`;
+    return database.executar(instrucao);
 }
 
 module.exports = {

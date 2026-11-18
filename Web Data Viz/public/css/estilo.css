@@ -61,10 +61,10 @@ body {
   margin: 0;
 }
 
-/* BANNER */
+
 .banner {
   width: 100%;
-  height: 900px;              /* ou 60vh para acompanhar a tela */
+  height: 900px;            
   display: flex;
   color: white;
   background-image: url("../assets/imgs/campo.jpg");
@@ -90,8 +90,6 @@ body {
 .banner .container span {
   font-weight: 800;
 }
-
-/* MISSÃO VISÃO VALORES */
 
 .social {
   background-color: #e5e5e5;
@@ -123,7 +121,6 @@ body {
   align-items: center;
 }
 
-/* FOOTER */
 
 .footer {
   background-color: bla;
@@ -141,8 +138,6 @@ body {
 .footer .container .version {
   font-size: 12px;
 }
-
-/* LOGIN */
 
 .login {
   height: 1100px;
@@ -241,7 +236,6 @@ body {
   display: none
 }
 
-/* FORMULARIO */
 
 .alerta_erro{
   display: flex;
@@ -321,8 +315,6 @@ input {
   flex-direction: column;
   height: var(--tamanho-simulador);
 }
-
-/* ALERTA */
 
 #alerta {
   position: absolute;
@@ -432,7 +424,7 @@ input {
     box-sizing: border-box;
 }
 
-/* HISTÓRIA - HERO */
+
 .historia-hero {
   width: 100%;
   min-height: 400px;
@@ -470,7 +462,6 @@ input {
   font-weight: 400;
 }
 
-/* HISTÓRIA - MEMÓRIAS (cards empilhados) */
 .historia-memorias {
   background-color: #000000;
   padding: 80px 20px;
@@ -561,7 +552,6 @@ input {
   margin: 0;
 }
 
-/* Responsividade história cards */
 @media (max-width: 768px) {
   .memoria-conteudo {
     padding: 20px 15px;
@@ -632,7 +622,7 @@ input {
   background-color: #222222;
 }
 
-/* Responsividade história */
+
 @media (max-width: 768px) {
   .hero-titulo {
     font-size: 32px;
@@ -654,7 +644,6 @@ input {
   }
 }
 
-/* HISTÓRIA - SEÇÕES SEPARADAS */
 .memoria-secao {
   margin-bottom: 60px;
   padding: 40px 0;
@@ -764,7 +753,6 @@ input {
   margin: 0;
 }
 
-/* Responsividade para seções separadas */
 @media (max-width: 900px) {
   .memoria-esquerda .memoria-conteudo,
   .memoria-direita .memoria-conteudo {
@@ -793,10 +781,6 @@ input {
   }
 }
 
-/* ============================================================
-   HISTÓRIA — CONCEITO EDITORIAL "DOCUMENTÁRIO" (story-*)
-   ============================================================ */
-
 html {
   scroll-behavior: smooth;
 }
@@ -806,7 +790,6 @@ body.pagina-historia {
   color: #ffffff;
 }
 
-/* ---------- HERO ---------- */
 .story-hero {
   position: relative;
   min-height: calc(100vh - var(--tamanho-header));
@@ -921,7 +904,6 @@ body.pagina-historia .story-hero-fundo {
   animation: storySeta 1.6s ease-in-out infinite;
 }
 
-/* ---------- INTRO / MANIFESTO ---------- */
 .story-intro {
   padding: clamp(80px, 12vw, 160px) 24px;
   background: #080808;
@@ -946,7 +928,6 @@ body.pagina-historia .story-hero-fundo {
   color: #ffffff;
 }
 
-/* ---------- JORNADA / CAPÍTULOS ---------- */
 .story-jornada {
   max-width: 1180px;
   margin: 0 auto;
@@ -980,7 +961,6 @@ body.pagina-historia .story-hero-fundo {
   order: 1;
 }
 
-/* número gigante fantasma */
 .story-numero {
   position: absolute;
   top: clamp(20px, 5vw, 50px);
@@ -1001,7 +981,6 @@ body.pagina-historia .story-hero-fundo {
   color: rgba(227, 176, 98, 0.08);
 }
 
-/* mídia */
 .story-midia {
   position: relative;
   border-radius: 20px;
@@ -1026,7 +1005,6 @@ body.pagina-historia .story-hero-fundo {
   object-fit: cover;
 }
 
-/* texto */
 .story-texto {
   max-width: 480px;
 }
@@ -1080,7 +1058,6 @@ body.pagina-historia .story-hero-fundo {
   margin-bottom: 0;
 }
 
-/* ---------- CTA ---------- */
 .story-cta {
   background: #03da59;
   padding: clamp(80px, 12vw, 150px) 24px;
@@ -1245,7 +1222,6 @@ body.pagina-historia-futebol .story-hero-fundo {
   transform: translateY(-3px);
 }
 
-/* ---------- INDEX — VALORES ---------- */
 .home-valores {
   background: #080808;
   padding: clamp(80px, 12vw, 150px) 24px;
